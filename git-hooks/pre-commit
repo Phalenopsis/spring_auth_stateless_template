@@ -1,0 +1,12 @@
+#!/bin/bash
+# Empêche les commits directs sur main et dev
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [[ "$branch" == "main" || "$branch" == "dev" ]]; then
+  echo "❌ Vous ne pouvez pas committer directement sur la branche '$branch'."
+  echo "👉 Veuillez créer une feature branch (ex: feat/ma-fonctionnalite)"
+  exit 1
+fi
+
+exit 0
