@@ -30,4 +30,6 @@ Commits must explain what they are. They must start with :
 * fix
 * config
 
+### CI
+CI is configured on pull request to branches "main" and "dev"
 

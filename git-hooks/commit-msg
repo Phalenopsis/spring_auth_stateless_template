@@ -4,7 +4,7 @@
 commit_message_file=$1
 commit_message=$(head -n 1 "$commit_message_file")
 
-if ! [[ "$commit_message" =~ ^(feat|fix|style|config|test)(\(.+\))?:\  ]]; then
+if ! [[ "$commit_message" =~ ^(feat|fix|style|config|test|doc)(\(.+\))?:\  ]]; then
   echo "❌ Message de commit invalide."
   echo "👉 Format attendu : 'feat: message' ou 'fix: message' ou 'style: message' ou 'config: message'"
   echo "Exemples :"
