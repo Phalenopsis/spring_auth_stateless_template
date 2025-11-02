@@ -93,7 +93,7 @@ class AuthControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("Cet email est déjà utilisé."));
+                .andExpect(jsonPath("$.error").value("Cet email est déjà utilisé."));
     }
 
 
