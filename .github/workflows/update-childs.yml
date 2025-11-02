@@ -20,10 +20,24 @@ jobs:
       - name: Get list of changed files
         id: changes
         run: |
-          # Fichiers modifiés depuis le dernier commit
-          echo "CHANGED_FILES<<EOF" >> $GITHUB_ENV
-          git diff --name-only HEAD~1 HEAD >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "🧩 Checking for changed files..."
+
+          # Si c’est le premier commit (HEAD~1 n’existe pas)
+          if git rev-parse HEAD~1 >/dev/null 2>&1; then
+            FILES=$(git diff --name-only HEAD~1 HEAD)
+          else
+            FILES=$(git ls-tree --name-only -r HEAD)
+          fi
+
+          echo "Changed files:"
+          echo "$FILES"
+
+          # Export dans le contexte GitHub Actions proprement
+          {
+            echo "CHANGED_FILES<<EOF"
+            echo "$FILES"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
 
       - name: Update children repos
         env:
