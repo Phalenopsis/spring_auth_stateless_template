@@ -26,6 +26,15 @@ jobs:
           --health-timeout=5s
           --health-retries=5
 
+    env:
+      DB_URI: 127.0.0.1
+      DB_PORT: 3306
+      DB_NAME: testdb
+      DB_USER: testuser
+      DB_PASSWORD: testpass
+      JWT_SECRET: supersecretkeythatisatleast64charslong
+      CORS_WHITE_LIST: "*"
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
