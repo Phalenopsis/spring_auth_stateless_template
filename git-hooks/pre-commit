@@ -9,4 +9,15 @@ if [[ "$branch" == "main" || "$branch" == "dev" ]]; then
   exit 1
 fi
 
+echo "🔍 Lancement des tests unitaires et d'intégration..."
+export MAVEN_OPTS="-Dfile.encoding=UTF-8"
+./mvnw test -Dtest='*Test,!*E2ETest'
+result=$?
+
+if [ $result -ne 0 ]; then
+  echo "❌ Certains tests ont échoué. Commit annulé."
+  exit 1
+else
+  echo "✅ Tous les tests unitaires et d'intégration sont passés !"
+fi
 exit 0
