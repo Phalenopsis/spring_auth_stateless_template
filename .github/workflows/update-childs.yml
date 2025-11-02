@@ -27,8 +27,8 @@ jobs:
 
       - name: Update children repos
         env:
-          CHILD_REPOS: user/child-repo1 user/child-repo2
-          CHILD_PAT: ${{ secrets.CHILD_PAT }}
+          CHILD_REPOS: ${{ secrets.$CHILD_REPO }}
+          CHILD_PAT: ${{ secrets.PAT }}
           CHANGED_FILES: ${{ env.CHANGED_FILES }}
         run: |
           for repo in $CHILD_REPOS; do
