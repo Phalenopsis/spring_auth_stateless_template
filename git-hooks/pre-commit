@@ -10,8 +10,8 @@ if [[ "$branch" == "main" || "$branch" == "dev" ]]; then
 fi
 
 echo "🔍 Lancement des tests unitaires et d'intégration..."
-./mvnw test -Dtest='*Test,!*E2ETest' > /dev/null
-echo $result
+export MAVEN_OPTS="-Dfile.encoding=UTF-8"
+./mvnw test -Dtest='*Test,!*E2ETest'
 result=$?
 
 if [ $result -ne 0 ]; then
