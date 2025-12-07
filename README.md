@@ -10,11 +10,14 @@ Launch ```sh setup-hooks.sh``` to set up git hooks.
 * Registration
 * Login (with JWT and HttpOnly Cookie sent to front-end)
 * Refresh token ()
+* create a new user in domain when an user is created
 
 ### Routes
-- /auth/register
-- /auth/login
-- /auth/refresh
+- POST /auth/register
+- POST /auth/login
+- POST /auth/refresh
+- POST /auth/logout
+- GET /user
 
 ### Todo List
 * forgotten-password
